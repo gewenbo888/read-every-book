@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --grain-opacity: 0.045;
+}
+
+html, body {
+  background: #040611;
+  color: #e8ecf5;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::selection { background: rgba(167, 139, 250, 0.35); color: #f5f3ff; }
+
+/* Subtle background field rendered behind everything */
+.cosmos-field {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 1200px 800px at 22% 8%,  rgba(167, 139, 250, 0.18), transparent 60%),
+    radial-gradient(ellipse 900px 700px  at 82% 28%, rgba(125, 211, 252, 0.14), transparent 65%),
+    radial-gradient(ellipse 1100px 900px at 50% 110%, rgba(251, 191, 36, 0.07), transparent 70%),
+    linear-gradient(180deg, #040611 0%, #060818 30%, #040611 80%, #02030a 100%);
+}
+
+/* Animated grain overlay */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image:
+    repeating-radial-gradient(circle at 10% 20%, rgba(255,255,255,0.7) 0 1px, transparent 1px 4px),
+    repeating-radial-gradient(circle at 80% 60%, rgba(255,255,255,0.5) 0 1px, transparent 1px 5px);
+  mix-blend-mode: screen;
+  animation: drift 40s linear infinite;
+}
+
+/* Section reveal helpers */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Glass surface */
+.glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+}
+.glass-strong {
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+/* Hairline divider */
+.hairline { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent); }
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8b93b0;
+}
+
+/* Display heading utility */
+.display {
+  font-family: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+}
+
+.display-italic {
+  font-family: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Section number plate */
+.plate {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: #525a76;
+}
+
+/* Aurora line — used to underline conceptual cards */
+.aurora-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(125,211,252,0.6) 30%, rgba(167,139,250,0.7) 55%, rgba(251,191,36,0.4) 80%, transparent 100%);
+}
+
+/* Subtle scanline for HUD pieces */
+.scanline::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Marquee */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 60s linear infinite; }
+
+/* Subtle border-glow on hover */
+.card-edge { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 0 0 0 rgba(167,139,250,0); transition: box-shadow .6s ease; }
+.card-edge:hover { box-shadow: inset 0 0 0 1px rgba(167,139,250,0.35), 0 10px 40px -20px rgba(125,211,252,0.4); }
+
+/* Fancy underline for inline links */
+.link-u { background-image: linear-gradient(90deg, rgba(125,211,252,0.7), rgba(167,139,250,0.7)); background-size: 100% 1px; background-repeat: no-repeat; background-position: 0 100%; padding-bottom: 2px; }
+
+/* Layer card vertical rail */
+.layer-rail { width: 1px; background: linear-gradient(180deg, transparent, rgba(255,255,255,0.18), transparent); }

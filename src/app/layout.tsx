@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     languages: { en: "/", "zh-CN": "/", "x-default": "/" },
   },
   openGraph: {
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "AI Has Already Read Every Book · 阅读的未来" }],
     title: "AI Has Already Read Every Book. But It Cannot Think For You.",
     description:
       "Reading is no longer information acquisition. It is the architecture of a mind. A civilization-scale meditation on the new cognitive era.",
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
     alternateLocale: ["zh_CN"],
   },
   twitter: {
+    images: ["/twitter-image.png"],
     card: "summary_large_image",
     title: "AI Has Already Read Every Book.",
     description:
